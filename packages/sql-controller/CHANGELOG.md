@@ -1,5 +1,12 @@
 # sql-controller
 
+## 0.0.3
+
+### Patch Changes
+
+- Updated dependencies [[`f261998`](https://github.com/swordev/sql-controller/commit/f2619982e86a5c38e1ea370a91d0abbb75eccece)]:
+  - @sql-controller/cli@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
