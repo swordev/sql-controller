@@ -1,0 +1,45 @@
+{
+  "name": "sql-controller",
+  "version": "0.0.1",
+  "description": "CLI tool for syncing configs of accounts, databases and privileges.",
+  "homepage": "https://github.com/swordev/sql-controller#readme",
+  "bugs": {
+    "url": "https://github.com/swordev/sql-controller/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swordev/sql-controller"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Juanra GM",
+    "email": "juanrgm724@gmail.com",
+    "url": "https://github.com/juanrgm"
+  },
+  "bin": "index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "tsc -b --clean",
+    "watch": "tsc -b -w"
+  },
+  "dependencies": {
+    "@sql-controller/cli": "workspace:*"
+  },
+  "publishConfig": {
+    "directory": "lib"
+  },
+  "engine": {
+    "node": ">=16.0.0"
+  },
+  "x-wspa": {
+    "distDir": "lib",
+    "outFiles": [
+      "lib",
+      "tsconfig.tsbuildinfo"
+    ],
+    "distFiles": [
+      "CHANGELOG.md",
+      "node_modules"
+    ]
+  }
+}

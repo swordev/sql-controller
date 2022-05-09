@@ -1,0 +1,7 @@
+# gitignore
+**/.history
+**/.pnpm-store
+**/lib
+**/node_modules
+**/tsconfig.tsbuildinfo
+**/sql-controller.config.json
