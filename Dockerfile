@@ -6,7 +6,6 @@ RUN apk add --no-cache \
 
 WORKDIR /var/lib/sql-controller/
 COPY . /var/lib/sql-controller/
-COPY docker/bin /usr/local/bin/
 
 RUN set -x \
 	&& npm install -g pnpm@6 \
@@ -23,5 +22,4 @@ RUN set -x \
 	&& rm -rf /var/cache/apk/*
 
 HEALTHCHECK CMD ["sql-controller", "check"]
-ENTRYPOINT ["docker-entrypoint"]
 CMD ["sql-controller", "start"]
