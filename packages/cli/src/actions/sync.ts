@@ -38,17 +38,22 @@ export default async function sync(options: {
       ...rootAccount,
       log: options.verbose,
     }));
-    if (
-      await driver.checkLogin({
-        hostname: rootAccount.hostname,
-        username: rootAccount.username,
-        password: rootAccount.password,
-        log: options.verbose,
-      })
-    ) {
-      successRootAccount[alias] = true;
-    } else {
-      log("error", alias, "Invalid root password");
+    
+    try {
+      if (
+        await driver.checkLogin({
+          hostname: rootAccount.hostname,
+          username: rootAccount.username,
+          password: rootAccount.password,
+          log: options.verbose,
+        })
+      ) {
+        successRootAccount[alias] = true;
+      } else {
+        log("error", alias, "Invalid root password");
+      }
+    } catch (error) {
+      log("error", alias, (error as Error).message);
     }
   }
 
