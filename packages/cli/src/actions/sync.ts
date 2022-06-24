@@ -38,7 +38,7 @@ export default async function sync(options: {
       ...rootAccount,
       log: options.verbose,
     }));
-    
+
     try {
       if (
         await driver.checkLogin({
