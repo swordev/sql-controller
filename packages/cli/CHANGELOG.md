@@ -1,5 +1,11 @@
 # @sql-controller/cli
 
+## 0.0.5
+
+### Patch Changes
+
+- [`c87b5b9`](https://github.com/swordev/sql-controller/commit/c87b5b9a6a3181e3b7d0e7a3c6d05275ff6d625f) Thanks [@juanrgm](https://github.com/juanrgm)! - Catch login error
+
 ## 0.0.4
 
 ### Patch Changes
