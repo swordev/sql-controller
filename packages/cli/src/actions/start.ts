@@ -35,16 +35,26 @@ export default async function start(options: {
   configPath: string;
 }) {
   let lastConfig: Config;
-
-  console.info(grey("Syncing..."));
+  let syncing = false;
+  let synced = false;
 
   const safeSync = async () => {
+    syncing = true;
+    console.info(grey("Syncing..."));
     try {
       const [result, config] = await run(options, lastConfig);
       lastConfig = config;
-      if (!result?.exitCode) console.info(green("Synced successfully"));
+      if (!result?.exitCode) {
+        synced = true;
+        console.info(green("Synced successfully"));
+      } else {
+        synced = false;
+      }
     } catch (error) {
+      synced = false;
       console.error(red(error));
+    } finally {
+      syncing = false;
     }
   };
 
@@ -57,7 +67,15 @@ export default async function start(options: {
     usePolling: true,
   });
 
-  return new Promise((resolve, reject) =>
-    watcher.on("error", reject).on("all", safeSync)
-  );
+  const interval = setInterval(async () => {
+    if (!syncing && !synced) await safeSync();
+  }, 30_000);
+
+  try {
+    await new Promise((resolve, reject) =>
+      watcher.on("error", reject).on("all", safeSync)
+    );
+  } finally {
+    clearInterval(interval);
+  }
 }
