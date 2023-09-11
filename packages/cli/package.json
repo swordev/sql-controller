@@ -1,6 +1,6 @@
 {
   "name": "@sql-controller/cli",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "CLI tool for syncing configs of accounts, databases and privileges.",
   "homepage": "https://github.com/swordev/sql-controller#readme",
   "bugs": {
