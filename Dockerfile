@@ -11,7 +11,7 @@ RUN set -x \
 	&& npm install -g pnpm@8 \
 	&& pnpm install \
 	&& pnpm build \
-	&& pnpm patch \
+	&& pnpm compose \
 	&& BIN_PATH=/usr/local/bin/sql-controller \
 	&& echo "#!/bin/sh" > $BIN_PATH \
 	&& echo "node /var/lib/sql-controller/packages/cli/lib/bin.js \"\$@\"" >> $BIN_PATH \
