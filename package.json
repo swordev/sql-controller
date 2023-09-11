@@ -22,8 +22,8 @@
     "check:eslint": "eslint --cache .",
     "check:format": "prettier --cache -c .",
     "clean": "wspa clean",
+    "compose": "wspa compose",
     "format": "prettier --cache -w .",
-    "patch": "wspa patch",
     "start": "node ./packages/cli/lib/bin.js",
     "test": "echo success",
     "watch": "tsc -b tsconfig.build.json -w"
