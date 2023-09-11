@@ -23,12 +23,12 @@ export async function exec(
   command: string,
   args: string[],
   options?: SpawnOptions,
-  extraOptions: ExecExtraOptions = {}
+  extraOptions: ExecExtraOptions = {},
 ) {
   if (extraOptions.log)
     console.log(
       "+",
-      yellow(extraOptions.logInput ?? `${command} ${args.join(" ")}`)
+      yellow(extraOptions.logInput ?? `${command} ${args.join(" ")}`),
     );
   return new Promise<{
     exitCode: number;
@@ -51,8 +51,8 @@ export async function exec(
         {
           stdio: ["inherit", "pipe", "pipe"],
         } as SpawnOptions,
-        options
-      )
+        options,
+      ),
     );
     p.stdout?.on("data", (chunk: Buffer) => {
       result.stdout += chunk.toString();

@@ -15,7 +15,7 @@ export default class PostgresDriver extends DriverAbstract {
     const password = await parsePassword(options.password);
     const { username } = options;
     await this.query(
-      `CREATE USER "${username}" WITH ENCRYPTED PASSWORD '${password}';`
+      `CREATE USER "${username}" WITH ENCRYPTED PASSWORD '${password}';`,
     );
     if (options.root) await this.query(`ALTER ROLE "${username}" SUPERUSER;`);
   }
@@ -25,10 +25,10 @@ export default class PostgresDriver extends DriverAbstract {
   }
 
   override async createDatabasePermission(
-    options: CreateDatabasePermissionOptions
+    options: CreateDatabasePermissionOptions,
   ) {
     await this.query(
-      `GRANT ALL PRIVILEGES ON DATABASE ${options.database} TO ${options.username};`
+      `GRANT ALL PRIVILEGES ON DATABASE ${options.database} TO ${options.username};`,
     );
   }
 
@@ -55,7 +55,7 @@ export default class PostgresDriver extends DriverAbstract {
     database: string,
     options?: {
       globalOptions?: GlobalOptions;
-    }
+    },
   ) {
     const result = await this.query(
       `SELECT datname FROM pg_database WHERE datname = '${database}';`,
@@ -66,14 +66,14 @@ export default class PostgresDriver extends DriverAbstract {
           throwExitCode: (error, result) =>
             !result.stderr.includes("error: connection to server"),
         },
-      }
+      },
     );
     const [row] = result.stdout.split(/\r?\n/g);
     return row.trim() === database;
   }
 
   override async checkDatabasePermission(
-    options: CheckDatabasePermissionOptions
+    options: CheckDatabasePermissionOptions,
   ) {
     return await this.checkDatabase(options.database, {
       globalOptions: {
@@ -88,7 +88,7 @@ export default class PostgresDriver extends DriverAbstract {
       `SELECT usename FROM pg_catalog.pg_user WHERE usename = '${username}'`,
       {
         skipColumnNames: true,
-      }
+      },
     );
     const [row] = result.stdout.split(/\r?\n/g);
     return row.trim() === username;
@@ -101,7 +101,7 @@ export default class PostgresDriver extends DriverAbstract {
       globalOptions?: GlobalOptions;
       skipColumnNames?: boolean;
       exec?: ExecExtraOptions;
-    } = {}
+    } = {},
   ) {
     const globalOptions = options.globalOptions || this.globalOptions;
 
@@ -128,7 +128,7 @@ export default class PostgresDriver extends DriverAbstract {
           log: true,
         }),
         logInput: options.exec?.logInput ?? input,
-      }
+      },
     );
   }
 }

@@ -6,7 +6,7 @@ import { green, cyan, grey, red } from "chalk";
 function log(
   type: "error" | "success" | "info" | "debug",
   alias: string,
-  message: string
+  message: string,
 ) {
   const colorize = {
     error: red,
@@ -69,7 +69,7 @@ export default async function sync(options: {
     }
     const driver = drivers[alias];
     const accounts = config.accounts[alias].sort(
-      (a, b) => (b.createDatabase ? 1 : 0) - (a.createDatabase ? 1 : 0)
+      (a, b) => (b.createDatabase ? 1 : 0) - (a.createDatabase ? 1 : 0),
     );
     for (const account of accounts) {
       log("info", alias, `Syncing ${account.username}`);

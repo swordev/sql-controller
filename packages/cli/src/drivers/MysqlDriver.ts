@@ -15,11 +15,11 @@ export default class MysqlDriver extends DriverAbstract {
     const password = await parsePassword(options.password);
     const { username } = options;
     await this.query(
-      `CREATE USER '${username}'@'%' IDENTIFIED BY '${password}';`
+      `CREATE USER '${username}'@'%' IDENTIFIED BY '${password}';`,
     );
     if (options.root)
       await this.query(
-        `GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' WITH GRANT OPTION;`
+        `GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' WITH GRANT OPTION;`,
       );
   }
 
@@ -29,17 +29,17 @@ export default class MysqlDriver extends DriverAbstract {
       : "";
     const collateExpr = options.collate ? ` COLLATE ${options.collate}` : "";
     await this.query(
-      `CREATE DATABASE ${options.database} ${charsetExpr}${collateExpr};`
+      `CREATE DATABASE ${options.database} ${charsetExpr}${collateExpr};`,
     );
   }
 
   override async createDatabasePermission(
-    options: CreateDatabasePermissionOptions
+    options: CreateDatabasePermissionOptions,
   ) {
     await this.query(
       `GRANT ${options.type?.join(", ") ?? "ALL"} ON ${
         options.database
-      }.* TO '${options.username}'@'${options.host ?? "%"}';`
+      }.* TO '${options.username}'@'${options.host ?? "%"}';`,
     );
   }
 
@@ -65,7 +65,7 @@ export default class MysqlDriver extends DriverAbstract {
     database: string,
     options?: {
       globalOptions?: GlobalOptions;
-    }
+    },
   ) {
     const result = await this.query(`SHOW DATABASES LIKE '${database}';`, {
       skipColumnNames: true,
@@ -84,14 +84,14 @@ export default class MysqlDriver extends DriverAbstract {
       `SELECT EXISTS(SELECT 1 FROM mysql.user WHERE user = '${username}') AS 'exists'`,
       {
         skipColumnNames: true,
-      }
+      },
     );
     const [row] = result.stdout.split(/\r?\n/g);
     return row === "1";
   }
 
   override async checkDatabasePermission(
-    options: CheckDatabasePermissionOptions
+    options: CheckDatabasePermissionOptions,
   ) {
     return await this.checkDatabase(options.database, {
       globalOptions: {
@@ -108,7 +108,7 @@ export default class MysqlDriver extends DriverAbstract {
       globalOptions?: GlobalOptions;
       skipColumnNames?: boolean;
       exec?: ExecExtraOptions;
-    } = {}
+    } = {},
   ) {
     const globalOptions = options.globalOptions || this.globalOptions;
     return await exec(
@@ -129,7 +129,7 @@ export default class MysqlDriver extends DriverAbstract {
           log: true,
         }),
         //logInput: options.exec?.logInput ?? input,
-      }
+      },
     );
   }
 }

@@ -52,12 +52,12 @@ export abstract class DriverAbstract {
   abstract createUser(options: CreateUserOptions): Promise<void>;
   abstract createDatabase(options: CreateDatabaseOptions): Promise<void>;
   abstract createDatabasePermission(
-    options: CreateDatabasePermissionOptions
+    options: CreateDatabasePermissionOptions,
   ): Promise<void>;
   abstract checkLogin(options: CheckLoginOptions): Promise<boolean>;
   abstract checkDatabase(database: string): Promise<boolean>;
   abstract checkDatabasePermission(
-    options: CheckDatabasePermissionOptions
+    options: CheckDatabasePermissionOptions,
   ): Promise<boolean>;
   abstract checkUser(username: string): Promise<boolean>;
   abstract query(input: string): Promise<unknown>;

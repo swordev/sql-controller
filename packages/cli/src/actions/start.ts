@@ -73,7 +73,7 @@ export default async function start(options: {
 
   try {
     await new Promise((resolve, reject) =>
-      watcher.on("error", reject).on("all", safeSync)
+      watcher.on("error", reject).on("all", safeSync),
     );
   } finally {
     clearInterval(interval);

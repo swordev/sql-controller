@@ -45,25 +45,25 @@ export default () => {
     .option(
       "-c,--config-path [path]",
       "Config path",
-      "./sql-controller.config.json"
+      "./sql-controller.config.json",
     );
   program.command("check").action(
     makeAction(async () => {
       const globalOptions = getGlobalOptions();
       return await check(globalOptions);
-    })
+    }),
   );
   program.command("start").action(
     makeAction(async () => {
       const globalOptions = getGlobalOptions();
       return await start(globalOptions);
-    })
+    }),
   );
   program.command("sync").action(
     makeAction(async () => {
       const globalOptions = getGlobalOptions();
       return await sync(globalOptions);
-    })
+    }),
   );
   return program;
 };

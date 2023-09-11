@@ -4,7 +4,7 @@ import PostgresDriver from "./PostgresDriver";
 
 export function createDriver(
   name: "mysql" | "postgres",
-  globalOptions: GlobalOptions
+  globalOptions: GlobalOptions,
 ) {
   if (name === "mysql") {
     return new MysqlDriver(globalOptions);
