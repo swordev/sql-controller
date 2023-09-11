@@ -99,6 +99,7 @@ export default async function sync(options: {
             await driver.createUser({
               username: account.username,
               password: password,
+              root: account.root,
             });
             log("success", alias, "User created");
           } else {

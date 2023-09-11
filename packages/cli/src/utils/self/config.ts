@@ -84,6 +84,7 @@ export type RootAccount = {
 export type Account = {
   username: string;
   password: Password;
+  root?: boolean;
   createDatabase?: boolean;
   /**
    * @default createDatabase

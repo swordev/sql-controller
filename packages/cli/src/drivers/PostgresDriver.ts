@@ -13,9 +13,11 @@ import {
 export default class PostgresDriver extends DriverAbstract {
   override async createUser(options: CreateUserOptions) {
     const password = await parsePassword(options.password);
+    const { username } = options;
     await this.query(
-      `CREATE USER "${options.username}" WITH ENCRYPTED PASSWORD '${password}';`
+      `CREATE USER "${username}" WITH ENCRYPTED PASSWORD '${password}';`
     );
+    if (options.root) await this.query(`ALTER ROLE "${username}" SUPERUSER;`);
   }
 
   override async createDatabase(options: CreateDatabaseOptions) {

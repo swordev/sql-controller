@@ -13,9 +13,14 @@ import {
 export default class MysqlDriver extends DriverAbstract {
   override async createUser(options: CreateUserOptions) {
     const password = await parsePassword(options.password);
+    const { username } = options;
     await this.query(
-      `CREATE USER '${options.username}'@'%' IDENTIFIED BY '${password}';`
+      `CREATE USER '${username}'@'%' IDENTIFIED BY '${password}';`
     );
+    if (options.root)
+      await this.query(
+        `GRANT ALL PRIVILEGES ON *.* TO '${username}'@'%' WITH GRANT OPTION;`
+      );
   }
 
   override async createDatabase(options: CreateDatabaseOptions) {

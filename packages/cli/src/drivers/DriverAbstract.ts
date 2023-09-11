@@ -14,6 +14,7 @@ export type GlobalOptions = RootAccount & {
 export type CreateUserOptions = {
   username: string;
   password: Password;
+  root?: boolean;
 };
 
 export type CreateDatabaseOptions = {
