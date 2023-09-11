@@ -50,9 +50,11 @@ export default async function sync(options: {
       ) {
         successRootAccount[alias] = true;
       } else {
+        success = false;
         log("error", alias, "Invalid root password");
       }
     } catch (error) {
+      success = false;
       log("error", alias, (error as Error).message);
     }
   }
@@ -61,6 +63,7 @@ export default async function sync(options: {
     if (!successRootAccount[alias]) continue;
     const rootAccount = config.rootAccount[alias];
     if (!rootAccount) {
+      success = false;
       log("error", alias, "Root account not found");
       continue;
     }
@@ -99,6 +102,7 @@ export default async function sync(options: {
             });
             log("success", alias, "User created");
           } else {
+            success = false;
             log("error", alias, "User password is unsafe");
           }
         }
