@@ -1,6 +1,7 @@
+.eslintcache
 .history
 .pnpm-store
-node_modules
 lib
+node_modules
 sql-controller.config.json
 tsconfig.tsbuildinfo

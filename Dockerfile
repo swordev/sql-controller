@@ -1,4 +1,4 @@
-FROM node:16-alpine
+FROM node:18-alpine
 RUN apk add --no-cache \
 	tzdata \
 	mysql-client \
@@ -8,7 +8,7 @@ WORKDIR /var/lib/sql-controller/
 COPY . /var/lib/sql-controller/
 
 RUN set -x \
-	&& npm install -g pnpm@6 \
+	&& npm install -g pnpm@8 \
 	&& pnpm install \
 	&& pnpm build \
 	&& pnpm patch \
