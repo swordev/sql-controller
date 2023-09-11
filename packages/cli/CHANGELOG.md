@@ -1,5 +1,11 @@
 # @sql-controller/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- [`7673e5d`](https://github.com/swordev/sql-controller/commit/7673e5d65da8837b8c2a9612ff13a08cf7eba89d) Thanks [@juanrgm](https://github.com/juanrgm)! - Fix docker image
+
 ## 0.0.7
 
 ### Patch Changes
