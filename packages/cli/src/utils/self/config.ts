@@ -39,6 +39,7 @@ export const configSchema: JSONSchema7 = {
       properties: {
         username: { type: "string" },
         password: { $ref: "#/definitions/password" },
+        root: { type: "boolean" },
         createDatabase: { type: "boolean" },
         createDatabasePermission: { type: "boolean" },
         database: { type: "string" },
